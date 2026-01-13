@@ -1,17 +1,41 @@
 package org.example;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/tareas")
 public class TareasController {
 
-    @GetMapping("/tareas")
-    public List<String> listarTareas() {
-        // Devuelve una lista de ejemplo
-        return List.of("Practica Spring Boot", "Hacer mini proyecto", "Subir a GitHub");
+    private final TareasService tareasService;
+
+    public TareasController(TareasService tareasService) {
+        this.tareasService = tareasService;
+    }
+
+    @GetMapping
+    public List<Tarea> listarTareas() {
+        return tareasService.listar();
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarTarea(@PathVariable Long id) {
+        tareasService.eliminar(id);
+    }
+
+    @GetMapping("/{id}")
+    public String verTarea(@PathVariable Long id){
+        return tareasService.verTarea(id);
+    }
+
+    @PostMapping
+    public Tarea crearTarea(@RequestBody Tarea tarea) {
+        return tareasService.crearTarea(tarea.getTitulo());
+    }
+
+    @PutMapping
+    public Tarea modificarTarea(@RequestBody Tarea tarea){
+        return tareasService.modificarTarea(tarea);
     }
 
 }
