@@ -1,8 +1,11 @@
 package org.example;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Tarea {
 
     private Long id;
+    @NotBlank(message = "El título no puede estar vacío")
     private String titulo;
 
     public Tarea(Long id, String titulo) {

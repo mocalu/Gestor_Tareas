@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -29,12 +30,12 @@ public class TareasController {
     }
 
     @PostMapping
-    public Tarea crearTarea(@RequestBody Tarea tarea) {
+    public Tarea crearTarea(@Valid @RequestBody Tarea tarea) {
         return tareasService.crearTarea(tarea.getTitulo());
     }
 
     @PutMapping
-    public Tarea modificarTarea(@RequestBody Tarea tarea){
+    public Tarea modificarTarea(@Valid@RequestBody Tarea tarea){
         return tareasService.modificarTarea(tarea);
     }
 
