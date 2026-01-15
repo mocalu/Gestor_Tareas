@@ -10,7 +10,7 @@ public class TareasService {
     private List<Tarea> tareas = new ArrayList<>();
 
     public TareasService() {
-        tareas.add(new Tarea(1L, "Aprender Spring Boot"));
+        tareas.add(new Tarea(1L, "Practicas Spring Boot"));
         tareas.add(new Tarea(2L, "Practicar Git"));
     }
 
